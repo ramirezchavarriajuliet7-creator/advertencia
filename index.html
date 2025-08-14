@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Advertencia</title>
+<style>
+  body {
+    background-color: #fff; /* blanco */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #alert-box {
+    background-color: #fff3cd; /* amarillo claro */
+    border: 1px solid #ffeeba; /* borde amarillo */
+    color: #856404; /* texto marrón oscuro */
+    padding: 30px 40px;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  #alert-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+  #countdown {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #856404;
+  }
+  #final-message, #question, #response, #last-message {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  button {
+    font-size: 16px;
+    padding: 8px 16px;
+    margin: 10px 10px 0 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  #yes-btn {
+    background-color: #28a745; /* verde */
+    color: white;
+  }
+  #no-btn {
+    background-color: #dc3545; /* rojo */
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+  <div id="alert-box">
+    <div id="alert-icon">⚠️</div>
+    <h2>¡Advertencia!</h2>
+    <p>Tu teléfono acaba de adquirir un virus.</p>
+    <p>Se reseteará en:</p>
+    <div id="countdown">10</div>
+
+    <div id="final-message" style="display:none;"></div>
+
+    <div id="question" style="display:none;">
+      ¿Quieres recuperar algo?<br/>
+      <button id="yes-btn">Sí</button>
+      <button id="no-btn">No</button>
+    </div>
+
+    <div id="response" style="display:none;"></div>
+    <div id="last-message" style="display:none; font-weight:bold;"></div>
+  </div>
+
+<script>
+  let tiempo = 10;
+  const countdownEl = document.getElementById('countdown');
+  const finalMsg = document.getElementById('final-message');
+  const question = document.getElementById('question');
+  const response = document.getElementById('response');
+  const lastMessage = document.getElementById('last-message');
+  const yesBtn = document.getElementById('yes-btn');
+  const noBtn = document.getElementById('no-btn');
+
+  const intervalo = setInterval(() => {
+    tiempo--;
+    countdownEl.textContent = tiempo;
+    if (tiempo <= 0) {
+      clearInterval(intervalo);
+      countdownEl.style.display = 'none';
+      finalMsg.style.display = 'block';
+      finalMsg.textContent = 'Tu teléfono quedará totalmente limpio en unos segundos, ya que abriste el virus klswhdbehbws.2.3.3.3.3.3.';
+      question.style.display = 'block';
+    }
+  }, 1000);
+
+  yesBtn.addEventListener('click', () => {
+    question.style.display = 'none';
+    response.style.display = 'block';
+    response.textContent = '¡Recuperando datos... (pero es una broma)!';
+    setTimeout(() => {
+      response.style.display = 'none';
+      lastMessage.style.display = 'block';
+      lastMessage.textContent = 'Era mentira JAJAJAJAJAJAJ';
+    }, 3000);
+  });
+
+  noBtn.addEventListener('click', () => {
+    question.style.display = 'none';
+    lastMessage.style.display = 'block';
+    lastMessage.textContent = 'Era mentira JAJAJAJAJAJAJ';
+  });
+</script>
+
+</body>
+</html>
